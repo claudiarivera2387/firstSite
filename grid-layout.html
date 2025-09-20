@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mastering HTML Layouts & Structure</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <style>
+    body {
+      background: #f8f9fa;
+      color: #222;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    
+    /* Hero Section */
+    .hero {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      overflow: hidden;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(34, 40, 49, 0.7);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .hero-content h1 {
+      font-size: 2.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 0.5em;
+    }
+    .hero-content p {
+      font-size: 1.3rem;
+      margin-bottom: 1.5em;
+    }
+    .carousel-controls {
+      display: flex;
+      justify-content: center;
+      gap: 1.5em;
+      margin-top: 1em;
+    }
+    .carousel-controls button {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      transition: background 0.2s;
+    }
+    .carousel-controls button:hover {
+      background: rgba(255,255,255,0.35);
+    }
+    /* Blog Article Elements */
+    .elements-section {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 40px 24px 24px 24px;
+      margin-top: -60px;
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 2;
+    }
+    .elements-section h2 {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-weight: 600;
+      color: #3b3b6d;
+    }
+    .element-article {
+      display: flex;
+      align-items: flex-start;
+      gap: 22px;
+      margin-bottom: 36px;
+      border-bottom: 1px solid #e9ecef;
+      padding-bottom: 22px;
+      transition: background 0.2s;
+    }
+    .element-article:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .element-icon {
+      flex-shrink: 0;
+      width: 54px;
+      height: 54px;
+      background: #e9ecef;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #3b3b6d;
+      transition: background 0.2s;
+    }
+    .element-article:hover .element-icon {
+      background: #0d6efd;
+      color: #fff;
+    }
+    .element-content h3 {
+      margin: 0 0 6px 0;
+      font-size: 1.2rem;
+      color: #3b3b6d;
+      font-weight: 600;
+    }
+    .element-content p {
+      margin: 0 0 4px 0;
+      color: #444;
+      font-size: 1.01em;
+    }
+    .read-more-link {
+      color: #0d6efd;
+      font-size: 0.97em;
+      text-decoration: underline;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .read-more-link:hover {
+      color: #3b3b6d;
+    }
+    .element-details {
+      display: none;
+      font-size: 0.97em;
+      color: #555;
+      margin-top: 6px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      padding: 10px 14px;
+    }
+    /* Layout Techniques */
+    .layout-section {
+      margin-bottom: 48px;
+    }
+    .layout-section h2 {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-weight: 600;
+      color: #3b3b6d;
+    }
+    .layout-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 22px;
+    }
+    .layout-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 18px 12px 16px 12px;
+      text-align: center;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      border: 1px solid #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
+      min-height: 420px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .layout-card:hover {
+      box-shadow: 0 4px 16px rgba(59,59,109,0.13);
+      transform: translateY(-2px) scale(1.03);
+    }
+    .layout-card .preview {
+      margin-bottom: 14px;
+      width: 100%;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .layout-card img {
+      width: 100%;
+      max-width: 140px;
+      height: 90px;
+      object-fit: contain;
+      border-radius: 6px;
+      background: #fff;
+      border: 1px solid #ccc;
+    }
+    .layout-card h4 {
+      color: #3b3b6d;
+      margin: 10px 0 8px 0;
+      font-size: 1.1em;
+    }
+    .layout-card p {
+      font-size: 0.98em;
+      color: #444;
+      margin: 0 0 10px 0;
+    }
+    .layout-card a {
+      color: #0d6efd;
+      text-decoration: underline;
+      font-weight: bold;
+      margin-bottom: 8px;
+      margin-top: 4px;
+      display: inline-block;
+    }
+    .pros-cons {
+      text-align: left;
+      margin-top: 8px;
+      font-size: 0.97em;
+    }
+    .pros-cons ul {
+      margin: 0 0 0 18px;
+      padding: 0;
+    }
+    .pros-cons li {
+      margin-bottom: 2px;
+    }
+    /* Footer */
+    footer {
+      background: #212529;
+      color: #fff;
+      padding: 40px 0 0 0;
+      margin-top: 48px;
+    }
+    .footer-main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 32px;
+      padding: 0 24px 24px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-about {
+      flex: 2 1 300px;
+    }
+    .footer-social {
+      flex: 1 1 180px;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      font-size: 2rem;
+      margin-top: 8px;
+    }
+    .footer-social a {
+      color: #fff;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .footer-social a:hover {
+      opacity: 1;
+      color: #0d6efd;
+    }
+    .footer-quote {
+      flex: 2 1 300px;
+      font-style: italic;
+      color: #bfc8d1;
+      margin-top: 8px;
+    }
+    .footer-newsletter {
+      flex: 2 1 300px;
+      margin-top: 8px;
+    }
+    .footer-newsletter input[type="email"] {
+      border-radius: 20px 0 0 20px;
+      border: none;
+      padding: 8px 14px;
+      width: 60%;
+      max-width: 220px;
+      outline: none;
+    }
+    .footer-newsletter button {
+      border-radius: 0 20px 20px 0;
+      border: none;
+      padding: 8px 18px;
+      background: #0d6efd;
+      color: #fff;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    .footer-newsletter button:hover {
+      background: #3b3b6d;
+    }
+    .footer-copyright {
+      text-align: center;
+      color: #bfc8d1;
+      font-size: 0.97em;
+      padding: 16px 0 0 0;
+      margin-top: 12px;
+      border-top: 1px solid #2c2f36;
+    }
+    @media (max-width: 1100px) {
+      .layout-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .footer-main { flex-direction: column; gap: 18px; }
+    }
+    @media (max-width: 800px) {
+      .layout-grid { grid-template-columns: 1fr 1fr; }
+      .elements-section, main { padding: 8px; }
+    }
+    @media (max-width: 600px) {
+      .layout-grid { grid-template-columns: 1fr; }
+      .elements-section { padding: 8px; }
+      .element-article { flex-direction: column; gap: 10px; }
+      .footer-main { padding: 0 8px 24px 8px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Mastering HTML Layouts & Structure</h1>
+      <p>Explore the building blocks of web design</p>
+      <div id="heroCarousel" class="carousel-controls">
+        <button id="carouselPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+        <span id="carouselLabel" style="font-size:1.1em;font-weight:500;">HTML Table Layout</span>
+        <button id="carouselNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HTML Elements Overview -->
+    <section class="elements-section" aria-labelledby="elements-title">
+      <h2 id="elements-title">HTML Elements Overview</h2>
+      <article class="element-article">
+        <div class="element-icon"><i class="fas fa-paragraph"></i></div>
+        <div class="element-content">
+          <h3>Paragraphs (<code>&lt;p&gt;</code>)</h3>
+          <p>Used for blocks of text, paragraphs are the foundation of readable content.</p>
+          <span class="read-more-link" data-target="p-details">Read More</span>
+          <div class="element-details" id="p-details">
+            Paragraphs are block-level elements that automatically add spacing above and below. They help structure text for clarity and accessibility.
+          </div>
+        </div>
+      </article>
+      <article class="element-article">
+        <div class="element-icon"><i class="fas fa-image"></i></div>
+        <div class="element-content">
+          <h3>Images (<code>&lt;img&gt;</code>)</h3>
+          <p>Embed visual content such as photos, icons, or diagrams.</p>
+          <span class="read-more-link" data-target="img-details">Read More</span>
+          <div class="element-details" id="img-details">
+            The <code>&lt;img&gt;</code> tag is used to display images. Always include <code>alt</code> text for accessibility and SEO.
+          </div>
+        </div>
+      </article>
+      <article class="element-article">
+        <div class="element-icon"><i class="fas fa-link"></i></div>
+        <div class="element-content">
+          <h3>Links (<code>&lt;a&gt;</code>)</h3>
+          <p>Allow users to navigate between pages or external sites.</p>
+          <span class="read-more-link" data-target="a-details">Read More</span>
+          <div class="element-details" id="a-details">
+            The <code>&lt;a&gt;</code> tag creates hyperlinks. Use descriptive link text for usability and accessibility.
+          </div>
+        </div>
+      </article>
+      <article class="element-article">
+        <div class="element-icon"><i class="fas fa-list-ul"></i></div>
+        <div class="element-content">
+          <h3>Lists (<code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>)</h3>
+          <p>Organize items in bullet or numbered lists for clarity.</p>
+          <span class="read-more-link" data-target="list-details">Read More</span>
+          <div class="element-details" id="list-details">
+            Use unordered lists (<code>&lt;ul&gt;</code>) for bullets and ordered lists (<code>&lt;ol&gt;</code>) for numbered steps. Each item goes in a <code>&lt;li&gt;</code>.
+          </div>
+        </div>
+      </article>
+      <article class="element-article">
+        <div class="element-icon"><i class="fas fa-table"></i></div>
+        <div class="element-content">
+          <h3>Tables (<code>&lt;table&gt;</code>)</h3>
+          <p>Display tabular data in rows and columns.</p>
+          <span class="read-more-link" data-target="table-details">Read More</span>
+          <div class="element-details" id="table-details">
+            Tables are best for data, not for layout. Use <code>&lt;tr&gt;</code> for rows and <code>&lt;td&gt;</code> for cells.
+          </div>
+        </div>
+      </article>
+      <article class="element-article">
+        <div class="element-icon"><i class="fas fa-pen-square"></i></div>
+        <div class="element-content">
+          <h3>Forms (<code>&lt;form&gt;</code>)</h3>
+          <p>Collect user input with fields, checkboxes, and buttons.</p>
+          <span class="read-more-link" data-target="form-details">Read More</span>
+          <div class="element-details" id="form-details">
+            Forms use <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, <code>&lt;select&gt;</code>, and <code>&lt;button&gt;</code> to gather data from users.
+          </div>
+        </div>
+      </article>
+      <article class="element-article">
+        <div class="element-icon"><i class="fas fa-heading"></i></div>
+        <div class="element-content">
+          <h3>Headings (<code>&lt;h1&gt;</code>–<code>&lt;h3&gt;</code>)</h3>
+          <p>Define content hierarchy and improve accessibility.</p>
+          <span class="read-more-link" data-target="heading-details">Read More</span>
+          <div class="element-details" id="heading-details">
+            Use headings to structure your page. <code>&lt;h1&gt;</code> is for the main title, <code>&lt;h2&gt;</code> for sections, and <code>&lt;h3&gt;</code> for subsections.
+          </div>
+        </div>
+      </article>
+      <article class="element-article">
+        <div class="element-icon"><i class="fas fa-box"></i></div>
+        <div class="element-content">
+          <h3>Containers (<code>&lt;div&gt;</code>, <code>&lt;section&gt;</code>)</h3>
+          <p>Group and structure content for layout and styling.</p>
+          <span class="read-more-link" data-target="container-details">Read More</span>
+          <div class="element-details" id="container-details">
+            <code>&lt;div&gt;</code> is a generic container. <code>&lt;section&gt;</code> is for thematically grouped content.
+          </div>
+        </div>
+      </article>
+      <article class="element-article">
+        <div class="element-icon"><i class="fas fa-window-maximize"></i></div>
+        <div class="element-content">
+          <h3>Headers, Footers, Navigation (<code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;nav&gt;</code>)</h3>
+          <p>Define top, bottom, and navigation areas of your site.</p>
+          <span class="read-more-link" data-target="hfnav-details">Read More</span>
+          <div class="element-details" id="hfnav-details">
+            <code>&lt;header&gt;</code> is for site or section headers, <code>&lt;footer&gt;</code> for closing info, and <code>&lt;nav&gt;</code> for navigation menus.
+          </div>
+        </div>
+      </article>
+      <article class="element-article">
+        <div class="element-icon"><i class="fas fa-columns"></i></div>
+        <div class="element-content">
+          <h3>Sidebars (<code>&lt;aside&gt;</code>)</h3>
+          <p>Complementary content such as menus, ads, or widgets.</p>
+          <span class="read-more-link" data-target="aside-details">Read More</span>
+          <div class="element-details" id="aside-details">
+            <code>&lt;aside&gt;</code> is used for content related to the main content, like sidebars or callouts.
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Layout Techniques Showcase -->
+    <section class="layout-section" aria-labelledby="layout-techniques-title">
+      <h2 id="layout-techniques-title">Layout Techniques Showcase</h2>
+      <div class="layout-grid">
+
+        <!-- HTML Table Layout -->
+        <div class="layout-card">
+          <div class="preview">
+            <img src="htmlTable.jpg" alt="Table Layout Example" />
+          </div>
+          <h4>HTML Tables</h4>
+          <p>Uses <code>&lt;table&gt;</code> for page structure. Each section is placed in a table cell.</p>
+          <a href="file:///D:/My%20first%20site/table-layout.html" target="_blank">Learn More</a>
+          <div class="pros-cons">
+            <strong>How it works:</strong>
+            <ul>
+              <li>Arrange layout using rows and columns.</li>
+            </ul>
+            <strong>Pros:</strong>
+            <ul>
+              <li>Easy for tabular data</li>
+              <li>Simple to understand</li>
+            </ul>
+            <strong>Cons:</strong>
+            <ul>
+              <li>Not semantic for layout</li>
+              <li>Not responsive</li>
+              <li>Hard to maintain</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CSS Float Layout -->
+        <div class="layout-card">
+          <div class="preview">
+            <img src="cssFloat.png" alt="CSS Float Layout Example" />
+          </div>
+          <h4>CSS Float</h4>
+          <p>Uses <code>float</code> to position elements side by side.</p>
+          <a href="css-float-layout.html" target="_blank">Learn More</a>
+          <div class="pros-cons">
+            <strong>How it works:</strong>
+            <ul>
+              <li>Floats columns left or right for layout.</li>
+            </ul>
+            <strong>Pros:</strong>
+            <ul>
+              <li>Simple, widely supported</li>
+              <li>Easy for basic layouts</li>
+            </ul>
+            <strong>Cons:</strong>
+            <ul>
+              <li>Can cause clearfix issues</li>
+              <li>Less flexible</li>
+              <li>Not ideal for responsive or complex layouts</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CSS Flexbox Layout -->
+        <div class="layout-card">
+          <div class="preview">
+            <img src="flexbox.jpg" alt="CSS Flexbox Layout Example" />
+          </div>
+          <h4>CSS Flexbox</h4>
+          <p>Uses <code>display: flex</code> for flexible, responsive layouts in one dimension.</p>
+          <a href="css-flexbox-layout.html" target="_blank">Learn More</a>
+          <div class="pros-cons">
+            <strong>How it works:</strong>
+            <ul>
+              <li>Aligns and distributes space among items in a container.</li>
+            </ul>
+            <strong>Pros:</strong>
+            <ul>
+              <li>Responsive</li>
+              <li>Easy alignment</li>
+              <li>Great for 1D layouts</li>
+            </ul>
+            <strong>Cons:</strong>
+            <ul>
+              <li>Not ideal for complex 2D layouts</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CSS Framework Layout -->
+        <div class="layout-card">
+          <div class="preview">
+            <img src="bootstrap.png" alt="CSS Framework Layout Example" />
+          </div>
+          <h4>CSS Frameworks</h4>
+          <p>Uses frameworks like Bootstrap for responsive, ready-made grids and interactivity.</p>
+          <a href="bootstrap framework-layout.html" target="_blank">Learn More</a>
+          <div class="pros-cons">
+            <strong>How it works:</strong>
+            <ul>
+              <li>Prebuilt grid and UI components for fast development.</li>
+            </ul>
+            <strong>Pros:</strong>
+            <ul>
+              <li>Fast, responsive, interactive</li>
+              <li>Lots of features</li>
+              <li>Cross-browser support</li>
+            </ul>
+            <strong>Cons:</strong>
+            <ul>
+              <li>Adds extra code</li>
+              <li>Less custom</li>
+              <li>Learning curve for framework classes</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CSS Grid Layout -->
+        <div class="layout-card">
+          <div class="preview">
+            <img src="cssGrid.png" alt="CSS Grid Layout Example" />
+          </div>
+          <h4>CSS Grid</h4>
+          <p>Uses <code>display: grid</code> for powerful, responsive 2D layouts.</p>
+          <a href="bootstrap framework-layout.html" target="_blank">Learn More</a>
+          <div class="pros-cons">
+            <strong>How it works:</strong>
+            <ul>
+              <li>Defines rows and columns for complex layouts.</li>
+            </ul>
+            <strong>Pros:</strong>
+            <ul>
+              <li>Best for 2D layouts</li>
+              <li>Very flexible and responsive</li>
+              <li>Semantic</li>
+            </ul>
+            <strong>Cons:</strong>
+            <ul>
+              <li>Newer, may be overkill for simple pages</li>
+              <li>Browser support needed for older browsers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-main">
+      <div class="footer-about">
+        <h5>About This Guide</h5>
+        <p>
+          <strong>Mastering HTML Layouts & Structure</strong> is a modern resource for web developers and designers. Learn the essentials of semantic HTML5 and responsive CSS to build robust, accessible, and beautiful websites.
+        </p>
+      </div>
+      <div class="footer-social">
+        <a href="https://linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://github.com/" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+      <div class="footer-quote">
+        “Great web design is about clarity, not complexity.”<br>
+        <span style="font-size:0.95em;">— Jeffrey Zeldman</span>
+      </div>
+      <form class="footer-newsletter" autocomplete="off">
+        <label for="newsletter-email" class="form-label" style="color:#fff;font-weight:500;">Newsletter</label>
+        <div class="d-flex">
+          <input type="email" id="newsletter-email" class="form-control" placeholder="Your email" required>
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </div>
+      </form>
+    </div>
+    <div class="text-center my-4">
+      <a href="my fisrt website.html" class="btn btn-outline-primary mb-2" style="font-weight:bold;">
+        <i class="fas fa-arrow-left"></i> <i class="fas fa-home"></i> Back to Home
+      </a>
+    </div>
+    <div class="footer-copyright">
+      &copy; 2025 HTML & CSS Layouts Guide
+    </div>
+  </footer>
+  <!-- Bootstrap JS & Interactivity -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Carousel functionality for hero section
+    const layouts = [
+      { label: "HTML Table Layout", img: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Table-based_layout.png" },
+      { label: "CSS Float Layout", img: "https://upload.wikimedia.org/wikipedia/commons/3/3d/CSS_Float_Layout_Diagram.png" },
+      { label: "CSS Flexbox Layout", img: "https://upload.wikimedia.org/wikipedia/commons/6/6a/Flexbox-diagram.png" },
+      { label: "CSS Framework Layout", img: "https://getbootstrap.com/docs/5.0/examples/grid/grid.png" },
+      { label: "CSS Grid Layout", img: "https://upload.wikimedia.org/wikipedia/commons/9/9a/CSS_Grid_Layout.png" }
+    ];
+    let currentLayout = 0;
+    const labelSpan = document.getElementById('carouselLabel');
+    const hero = document.querySelector('.hero');
+    function updateHeroCarousel() {
+      labelSpan.textContent = layouts[currentLayout].label;
+      hero.style.backgroundImage = `linear-gradient(rgba(34,40,49,0.7),rgba(34,40,49,0.7)),url('${layouts[currentLayout].img}')`;
+    }
+    document.getElementById('carouselPrev').onclick = function() {
+      currentLayout = (currentLayout - 1 + layouts.length) % layouts.length;
+      updateHeroCarousel();
+    };
+    document.getElementById('carouselNext').onclick = function() {
+      currentLayout = (currentLayout + 1) % layouts.length;
+      updateHeroCarousel();
+    };
+    updateHeroCarousel();
+
+    // Read More toggles for element articles
+    document.querySelectorAll('.read-more-link').forEach(link => {
+      link.addEventListener('click', function() {
+        const details = document.getElementById(this.dataset.target);
+        if (details.style.display === 'block') {
+          details.style.display = 'none';
+          this.textContent = 'Read More';
+        } else {
+          details.style.display = 'block';
+          this.textContent = 'Show Less';
+        }
+      });
+    });
+
+    // Newsletter form (demo only)
+    document.querySelector('.footer-newsletter').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for subscribing!');
+      this.reset();
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

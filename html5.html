@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Selectores CSS en acción</title>
+  <style>
+    h1 ~ p {
+      color: steelblue; /* Hermano general */
+    }
+
+    a:hover {
+      background-color: lightgreen; /* Pseudoclase */
+    }
+
+    p::before {
+      content: "👉 "; /* Pseudoelemento */
+    }
+
+    a[href*="blog"] {
+      color: orange; /* Subcadena en atributo */
+    }
+
+    a[href^="https"] {
+      font-weight: bold; /* Prefijo en atributo */
+    }
+
+    img[src$=".png"] {
+      border: 2px dashed red; /* Sufijo en atributo */
+    }
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ejemplo con Aside</title>
+  <style>
+    body {
+      display: flex;
+      font-family: sans-serif;
+      margin: 0;
+    }
+
+    main {
+      flex: 1;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+
+    aside {
+      width: 250px;
+      background-color: #1e2a78;
+      color: white;
+      padding: 20px;
+    }
+
+    aside h2 {
+      margin-top: 0;
+    }
+
+    aside a {
+      display: block;
+      color: white;
+      margin-bottom: 10px;
+      text-decoration: none;
+    }
+
+    aside a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <aside>
+    <h2>Recursos útiles</h2>
+    <a href="#">Documentación HTML</a>
+    <a href="#">Guía de CSS</a>
+    <a href="#">Flexbox Visualizer</a>
+  </aside>
+
+  <main>
+    <h1>Bienvenida, Claudia</h1>
+    <p>Este es el contenido principal de tu sitio web. Aquí puedes explicar tu experiencia, tu formación, y tus proyectos.</p>
+  </main>
+
+</body>
+</html>
+  </style>
+</head>
+<body>
+  <h1>Mis recursos</h1>
+  <p>Este párrafo será azul porque está después del h1.</p>
+  <p>Este también.</p>
+
+  <a href="https://misitio.com/blog">Blog seguro</a><br>
+  <a href="http://ejemplo.com/blog/articulo">Artículo sin https</a><br>
+  <a href="https://misitio.com/contacto">Contacto seguro</a>
+
+  <p>Texto con flechita antes (pseudoelemento).</p>
+
+  <img src="imagen.png" alt="Ejemplo PNG" width="150" />
+  <img src="foto.jpg" alt="Foto JPG" width="150" />
+</body>
+</html>

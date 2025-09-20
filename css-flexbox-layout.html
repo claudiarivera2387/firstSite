@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Flexbox Layout</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <style>
+    body { background: #f8f9fa; color: #222; font-family: 'Segoe UI', Arial, sans-serif; }
+    .container { max-width: 950px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 32px; }
+    h1, h2 { color: #3b3b6d; }
+    /* Flexbox Layout Demo */
+    .flexbox-layout-demo {
+      border: 2px solid #3b3b6d;
+      border-radius: 8px;
+      margin: 32px 0 24px 0;
+      background: #f1f1fa;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .flex-header, .flex-footer {
+      background: #3b3b6d;
+      color: #fff;
+      padding: 18px;
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .flex-row {
+      display: flex;
+      flex: 1 1 auto;
+      min-height: 180px;
+      background: #fff;
+    }
+    .flex-nav {
+      background: #e9ecef;
+      padding: 18px;
+      width: 22%;
+      min-width: 120px;
+      font-weight: 500;
+      border-right: 2px solid #d1d1e0;
+      transition: background 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .flex-sidebar {
+      background: #e9ecef;
+      padding: 18px;
+      width: 22%;
+      min-width: 120px;
+      font-weight: 500;
+      border-left: 2px solid #d1d1e0;
+      transition: background 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .flex-main {
+      flex: 1 1 0;
+      background: #fff;
+      padding: 18px;
+      font-weight: 500;
+      transition: background 0.2s;
+      min-width: 0;
+    }
+    .flex-nav:hover, .flex-sidebar:hover, .flex-main:hover {
+      background: #d1e7fd;
+    }
+    @media (max-width: 900px) {
+      .flex-nav, .flex-sidebar { width: 28%; }
+    }
+    @media (max-width: 700px) {
+      .flex-row {
+        flex-direction: column;
+      }
+      .flex-nav, .flex-sidebar, .flex-main {
+        width: 100% !important;
+        min-width: unset;
+        border: none;
+        align-items: flex-start;
+      }
+      .flex-nav, .flex-sidebar { border-bottom: 2px solid #d1d1e0; }
+    }
+    .example-code {
+      background: #222;
+      color: #fff;
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 0.97em;
+      margin: 16px 0;
+      overflow-x: auto;
+    }
+    .pros-cons ul { margin-left: 1.2em; }
+    .pros-cons li { margin-bottom: 6px; }
+    .nav-links a {
+      margin-right: 12px;
+      text-decoration: none;
+      color: #0d6efd;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #3b3b6d; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="container">
+      <!-- Page Header -->
+      <header class="mb-4 text-center">
+        <h1 class="mb-2"><i class="fas fa-grip-horizontal"></i> CSS Flexbox Layout</h1>
+        <p class="lead">Modern, flexible layouts with one-dimensional control</p>
+      </header>
+      <!-- Flexbox Layout Demo -->
+      <section>
+        <h2 class="h4 mb-3">Flexbox Layout Demo</h2>
+        <div class="flexbox-layout-demo mb-3">
+          <div class="flex-header">Header (full-width)</div>
+          <div class="flex-row">
+            <nav class="flex-nav" aria-label="Main navigation">
+              Navigation<br>
+              <ul class="list-unstyled mt-2">
+                <li><a href="#" tabindex="0">Home</a></li>
+                <li><a href="#" tabindex="0">About</a></li>
+                <li><a href="#" tabindex="0">Contact</a></li>
+              </ul>
+            </nav>
+            <section class="flex-main">
+              Main Content<br>
+              <p>This area expands to fill available space between navigation and sidebar. Flexbox makes alignment and distribution easy and responsive.</p>
+            </section>
+            <aside class="flex-sidebar">
+              Sidebar<br>
+              <ul class="list-unstyled mt-2">
+                <li><a href="#" tabindex="0">Links</a></li>
+                <li><a href="#" tabindex="0">Resources</a></li>
+              </ul>
+            </aside>
+          </div>
+          <footer class="flex-footer">Footer (full-width)</footer>
+        </div>
+      </section>
+      <!-- Explanation Section -->
+      <section class="mb-4">
+        <h2 class="h4">How CSS Flexbox Layouts Work</h2>
+        <p>
+          <code>display: flex</code> enables flexible, one-dimensional layouts. Flexbox was designed to align, distribute, and order items easily within a container, making it ideal for modern responsive design.
+        </p>
+        <div class="example-code">
+<pre><code>&lt;div class="container" style="display: flex;"&gt;
+  &lt;div class="nav"&gt;Navigation&lt;/div&gt;
+  &lt;div class="main"&gt;Main Content&lt;/div&gt;
+  &lt;div class="sidebar"&gt;Sidebar&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+        </div>
+        <p>
+          <strong>Flexbox Example CSS:</strong>
+        </p>
+        <div class="example-code">
+<pre><code>.container {
+  display: flex;
+}
+.nav, .sidebar {
+  width: 22%;
+}
+.main {
+  flex: 1 1 0;
+}</code></pre>
+        </div>
+      </section>
+      <!-- Pros and Cons -->
+      <section class="pros-cons row mb-4">
+        <div class="col-md-6">
+          <h2 class="h5">✅ Pros</h2>
+          <ul>
+            <li>Easy to create responsive layouts</li>
+            <li>Simple alignment and spacing</li>
+            <li>Order and direction control</li>
+            <li>Widely supported in modern browsers</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <h2 class="h5">❌ Cons</h2>
+          <ul>
+            <li>Not ideal for complex two-dimensional layouts</li>
+            <li>Older browsers may lack full support</li>
+          </ul>
+        </div>
+      </section>
+      <!-- Recommended Use Cases -->
+      <section class="mb-4">
+        <h2 class="h5">📌 Recommended Use Cases</h2>
+        <ul>
+          <li><strong>Navigation bars:</strong> Horizontal or vertical menus</li>
+          <li><strong>Card layouts:</strong> Responsive grids of cards or tiles</li>
+          <li><strong>Toolbars and footers:</strong> Aligning buttons and controls</li>
+          <li><strong>Media objects:</strong> Images and text side by side</li>
+          <li><strong>Modern web apps:</strong> Most responsive UIs today use Flexbox</li>
+        </ul>
+        <!-- Accordion Examples -->
+        <div class="accordion my-4" id="flexboxExamplesAccordion">
+          <!-- Navigation Bar Example -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingNavBar">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNavBar" aria-expanded="false" aria-controls="collapseNavBar">
+                Example: Flexbox Horizontal Navigation Bar
+              </button>
+            </h2>
+            <div id="collapseNavBar" class="accordion-collapse collapse" aria-labelledby="headingNavBar" data-bs-parent="#flexboxExamplesAccordion">
+              <div class="accordion-body">
+                <nav style="display:flex;gap:16px;justify-content:center;background:#e9ecef;padding:12px;border-radius:6px;">
+                  <a href="#" class="btn btn-outline-primary btn-sm">Home</a>
+                  <a href="#" class="btn btn-outline-primary btn-sm">About</a>
+                  <a href="#" class="btn btn-outline-primary btn-sm">Services</a>
+                  <a href="#" class="btn btn-outline-primary btn-sm">Contact</a>
+                </nav>
+                <small class="text-muted d-block mt-2">A simple horizontal navigation bar using Flexbox for spacing and alignment.</small>
+              </div>
+            </div>
+          </div>
+          <!-- Card Layout Example -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingCards">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCards" aria-expanded="false" aria-controls="collapseCards">
+                Example: Responsive Card Grid
+              </button>
+            </h2>
+            <div id="collapseCards" class="accordion-collapse collapse" aria-labelledby="headingCards" data-bs-parent="#flexboxExamplesAccordion">
+              <div class="accordion-body">
+                <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+                  <div class="card" style="width:160px;">
+                    <img src="https://via.placeholder.com/160x100" class="card-img-top" alt="Card 1">
+                    <div class="card-body p-2">
+                      <h6 class="card-title mb-1">Card 1</h6>
+                      <p class="card-text small">Flexbox makes responsive grids easy.</p>
+                    </div>
+                  </div>
+                  <div class="card" style="width:160px;">
+                    <img src="https://via.placeholder.com/160x100" class="card-img-top" alt="Card 2">
+                    <div class="card-body p-2">
+                      <h6 class="card-title mb-1">Card 2</h6>
+                      <p class="card-text small">Cards wrap automatically on small screens.</p>
+                    </div>
+                  </div>
+                  <div class="card" style="width:160px;">
+                    <img src="https://via.placeholder.com/160x100" class="card-img-top" alt="Card 3">
+                    <div class="card-body p-2">
+                      <h6 class="card-title mb-1">Card 3</h6>
+                      <p class="card-text small">Flexible and modern layouts.</p>
+                    </div>
+                  </div>
+                </div>
+                <small class="text-muted d-block mt-2">Cards are arranged in a responsive grid using Flexbox.</small>
+              </div>
+            </div>
+          </div>
+          <!-- Toolbar and Footer Example -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingToolbar">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseToolbar" aria-expanded="false" aria-controls="collapseToolbar">
+                Example: Toolbar with Aligned Buttons
+              </button>
+            </h2>
+            <div id="collapseToolbar" class="accordion-collapse collapse" aria-labelledby="headingToolbar" data-bs-parent="#flexboxExamplesAccordion">
+              <div class="accordion-body">
+                <div style="display:flex;justify-content:space-between;align-items:center;background:#e9ecef;padding:12px;border-radius:6px;">
+                  <div>
+                    <button class="btn btn-success btn-sm">Save</button>
+                    <button class="btn btn-danger btn-sm">Delete</button>
+                  </div>
+                  <span class="small text-muted">Toolbar actions aligned with Flexbox</span>
+                  <button class="btn btn-primary btn-sm">Settings</button>
+                </div>
+                <small class="text-muted d-block mt-2">Flexbox aligns buttons and controls in toolbars and footers.</small>
+              </div>
+            </div>
+          </div>
+          <!-- Media Object Example -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingMedia">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMedia" aria-expanded="false" aria-controls="collapseMedia">
+                Example: Media Object (Image + Text)
+              </button>
+            </h2>
+            <div id="collapseMedia" class="accordion-collapse collapse" aria-labelledby="headingMedia" data-bs-parent="#flexboxExamplesAccordion">
+              <div class="accordion-body">
+                <div style="display:flex;align-items:center;gap:16px;background:#e9ecef;padding:12px;border-radius:6px;">
+                  <img src="https://via.placeholder.com/80x80" alt="Profile" style="border-radius:50%;width:80px;height:80px;">
+                  <div>
+                    <h6 class="mb-1">Jane Doe</h6>
+                    <p class="mb-0 small">Flexbox easily aligns images and text side by side for media objects.</p>
+                  </div>
+                </div>
+                <small class="text-muted d-block mt-2">Media objects are a classic Flexbox use case.</small>
+              </div>
+            </div>
+          </div>
+          <!-- Modern Responsive Web App Example -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingModernWeb">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseModernWeb" aria-expanded="false" aria-controls="collapseModernWeb">
+                Example: Modern Responsive Web App Layout
+              </button>
+            </h2>
+            <div id="collapseModernWeb" class="accordion-collapse collapse" aria-labelledby="headingModernWeb" data-bs-parent="#flexboxExamplesAccordion">
+              <div class="accordion-body">
+                <div style="display:flex;flex-direction:column;gap:12px;background:#e9ecef;padding:12px;border-radius:6px;">
+                  <header style="background:#3b3b6d;color:#fff;padding:8px;border-radius:4px;">App Header</header>
+                  <div style="display:flex;gap:12px;">
+                    <nav style="background:#fff;padding:8px;border-radius:4px;width:120px;">Sidebar</nav>
+                    <main style="background:#fff;padding:8px;border-radius:4px;flex:1;">Main Content Area</main>
+                  </div>
+                  <footer style="background:#3b3b6d;color:#fff;padding:8px;border-radius:4px;">App Footer</footer>
+                </div>
+                <small class="text-muted d-block mt-2">A typical responsive web app layout using Flexbox for structure and spacing.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Navigation -->
+      <nav class="nav-links text-center mb-2">
+        <a href="grid-layout.html"><i class="fas fa-arrow-left"></i> Back to Layout Showcase</a>
+        <a href="css-float-layout.html">Float Demo</a>
+        <a href="css-grid-layout.html">Grid Demo</a>
+        <a href="css-flexbox-layout.html">Flexbox Demo</a>
+        <a href="table-layout.html">Table Demo</a>
+        <a href="bootstrap framework-layout.html">Bootstrap Demo</a>
+      </nav>
+    </div>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+  <!-- Make sure Bootstrap JS is loaded for accordion functionality -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

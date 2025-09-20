@@ -1,0 +1,239 @@
+styles.css
+html {
+  scroll-behavior: smooth;
+}
+  body {
+  font-family: Arial, sans-serif;
+  margin: 40px !important; /* ensures it is not overwritten by Bootstrap */
+  border: 5px solid #565380 !important;
+  padding: 40px !important;
+  box-sizing: border-box;
+}
+
+    header, nav, section, aside, article, footer { padding: 20px; margin: 10px; }
+    .welcome { text-align: center; background-color: #565380; padding: 20px; font-family: Cochin; 
+        font-weight: bold;color: rgb(231, 231, 238);border: solid 2px darkblue; }
+
+
+/* hamburguer button */
+.hamburger {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 26px;
+  background-color: #565380;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Menú oculto por defecto */
+.hamburger-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background-color: #565380;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  padding: 40px 20px;
+  z-index: 999;
+
+}
+
+/* Mostrar el menú */
+.hamburger-menu.show {
+  transform: translateX(0);
+}
+
+.hamburger-menu ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 40px;
+}
+
+.hamburger-menu ul li {
+  margin: 12px 0;
+}
+
+.hamburger-menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s;
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+.hamburger-menu ul li a:hover {
+  color: #00adb5;
+}
+    
+.intro {
+  display: flex;
+  align-items: center;  
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap; /* wrap for small screens */
+}
+
+.yo {
+  width: 30%; /* image uses a quarter of the container's width */
+  padding: 3%;
+  display: flex;
+  justify-content: center;
+}
+
+.yo img {
+  width: auto;
+  border: 2px solid darkblue;
+  border-radius: 10px;
+  object-fit: cover;
+  display: flex;
+  max-width: 100%;
+ height: auto;
+}
+
+.texto {
+  width: 100%; /* text uses 100% with  */
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  object-fit: cover;
+  padding: 3%;
+  display: flex;
+}
+/* Responsive fix for small screens */
+@media (max-width: 768px) {
+  .intro {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .yo, .texto {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .yo img {
+    max-width: 200px;
+  }
+}
+
+
+@keyframes slideUpDown {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(20%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.lead {
+  font-size: 1.2em;
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 32px; /* Add this line for spacing below the animated text */
+  font-family: great vibes, cursive;
+  animation: slideUpDown 4s ease-in-out infinite;
+}
+
+
+.galeria {
+  display: flex;               /*  activate  layout flex */
+  flex-direction: row;
+  justify-content: center;
+  gap: 1%;                /* space among images */
+  flex-wrap: wrap;             /* To accommodate if they don't fit in a single row */
+  margin-top: 1%;            /* visual spacing */
+  border: solid 1% darkblue; /* Border around the gallery */
+    background-color: #565380;   /* Light background for the gallery */
+padding: 0.1%;            /* Internal spacing */
+  border-radius: 10px;         /* Rounded corners */
+}
+
+@keyframes girar {
+  from { transform: rotate(80deg); }
+  to { transform: rotate(10deg); }
+}
+
+.galeria img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;      /* Las hace circulares */
+  border: 3px solid darkblue;
+  animation: girar 20s linear infinite;
+
+}
+
+
+    nav {
+  background-color: #f0f0f07b;
+  display: flex;                /* Aplica Flexbox al contenedor */ 
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.main-nav {
+  margin: 2rem 0;
+}
+.main-nav a {
+  margin-right: 1.5rem;
+  text-decoration: none;
+  color: #0d6efd;
+}
+.main-nav a:hover {
+  text-decoration: underline;
+}
+
+nav a {
+  flex: 0 0 20%;                /* Cada enlace ocupa 25% del nav */
+  text-align: center;
+  margin-right: 15px;
+  border: solid 5px darkblue;
+  border-radius: 5px;
+  padding: 15px;
+  font-weight: bold;
+  white-space: nowrap;         /* Evita que el texto se rompa */
+}
+
+/* Responsive video container */
+.video-responsive {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-top: 25px;
+  height: 0;
+  overflow: hidden;
+  margin: 0 auto 20px auto; /* Center and add bottom margin */
+  max-width: 100%;
+}
+
+.video-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  margin: 0;
+  background: #000;
+}
+    footer { background-color: #565380; color: rgb(231, 231, 238); text-align: center;border-radius: 20px; padding: 10px;border: solid 2px darkblue; }
+    .footer {text-align: center;}
+    aside { background-color: #f9f9f9; font-style: italic; }
+    section { border-bottom: 1px solid #ccc; }
+    img, iframe { display: block; margin: 20px auto; max-width: 100%; }
+    h2 { color: rgb(231, 231, 238);background-color: #565380;border: solid 2px darkblue; border-radius: 10px; padding: 4px; }

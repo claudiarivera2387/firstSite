@@ -1,0 +1,129 @@
+<!-- Blog about CSS using float layout -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog: Discovering CSS Float</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f7f7f7;
+    }
+    .container {
+      width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    header {
+      background: #3b3b6d;
+      color: #fff;
+      padding: 24px;
+      text-align: center;
+    }
+    nav {
+      float: left;
+      width: 200px;
+      background: #ececec;
+      padding: 20px;
+      min-height: 400px;
+      box-sizing: border-box;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+    nav ul li {
+      margin-bottom: 14px;
+    }
+    nav ul li a {
+      color: #3b3b6d;
+      text-decoration: none;
+    }
+    article {
+      float: left;
+      width: 660px;
+      padding: 30px;
+      box-sizing: border-box;
+    }
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    footer {
+      background: #3b3b6d;
+      color: #fff;
+      text-align: center;
+      padding: 16px;
+      margin-top: 20px;
+    }
+    @media (max-width: 950px) {
+      .container { width: 100%; }
+      nav, article { float: none; width: 100%; min-height: unset; }
+      article { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Blog: Discovering CSS Float</h1>
+      <p>Learn how to create classic layouts with the CSS float property</p>
+    </header>
+    <div class="clearfix">
+      <nav>
+        <ul>
+          <li><a href="#what-is-float">What is float?</a></li>
+          <li><a href="#basic-example">Basic example</a></li>
+          <li><a href="#pros-cons">Pros and Cons</a></li>
+          <li><a href="#tips">Usage Tips</a></li>
+        </ul>
+      </nav>
+      <article>
+        <h2 id="what-is-float">What is float?</h2>
+        <p>
+          The <strong>float</strong> property in CSS allows you to position an element to the left or right of its container, letting content flow around it. It was widely used for layouts before Flexbox and Grid became popular.
+        </p>
+        <h2 id="basic-example">Basic example</h2>
+        <p>
+          Here is an example of two boxes floating side by side:
+        </p>
+        <div style="overflow: hidden; margin-bottom: 20px;">
+          <div style="float:left; width:45%; background:#d1e7dd; padding:10px; margin-right:5%;">
+            <strong>Left Box</strong><br>
+            float: left;
+          </div>
+          <div style="float:left; width:45%; background:#f8d7da; padding:10px;">
+            <strong>Right Box</strong><br>
+            float: left;
+          </div>
+        </div>
+        <pre>
+.left-box {
+  float: left;
+  width: 45%;
+}
+.right-box {
+  float: left;
+  width: 45%;
+}
+        </pre>
+        <h2 id="pros-cons">Pros and Cons</h2>
+        <ul>
+          <li><strong>Pros:</strong> Easy to use for simple layouts, widely supported.</li>
+          <li><strong>Cons:</strong> Can cause overflow issues, requires clearfix, less flexible than Flexbox or Grid.</li>
+        </ul>
+        <h2 id="tips">Usage Tips</h2>
+        <ul>
+          <li>Use <code>overflow: hidden</code> or the <code>.clearfix</code> technique to avoid container collapse issues.</li>
+          <li>For new projects, consider Flexbox or Grid for more complex layouts.</li>
+        </ul>
+      </article>
+    </div>
+    <footer>
+      &copy; 2025 Blog CSS Float - All rights reserved
+    </footer>

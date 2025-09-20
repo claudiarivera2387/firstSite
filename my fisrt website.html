@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Design & User Experience</title>
+   <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+<link rel="stylesheet" href="wtf.css">
+</head>
+
+<body>
+
+<!-- Hamburger Button -->
+ <div class="hamburger" id="hamburger-btn" tabindex="0" aria-label="Open menu" role="button">☰</div>
+
+
+<!-- Hamburger Menu -->
+<nav class="hamburger-menu" id="hamburger-menu" aria-label="Quick menu">
+  <ul>
+    <li><a href="D:\My first site\grid-layout.html">HTML</a></li>
+    <li><a href="#css">CSS</a></li>
+    <li><a href="#javascript">JavaScript</a></li>
+    <li><a href="#angular">Angular</a></li>
+    <li><a href="#node">Node</a></li>
+    <li><a href="#react">React</a></li>
+  </ul>
+</nav>
+
+
+<script>
+ // Hamburger menu accessibility and toggle
+const hamburgerBtn = document.getElementById("hamburger-btn");
+const hamburgerMenu = document.getElementById("hamburger-menu");
+
+function toggleMenu() {
+  hamburgerMenu.classList.toggle("show");
+  hamburgerBtn.setAttribute("aria-expanded", hamburgerMenu.classList.contains("show"));
+}
+
+hamburgerBtn.addEventListener("click", toggleMenu);
+hamburgerBtn.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    toggleMenu();
+  }
+});
+
+window.addEventListener("click", (e) => {
+  if (!hamburgerMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+    hamburgerMenu.classList.remove("show");
+    hamburgerBtn.setAttribute("aria-expanded", "false");
+  }
+});
+</script>
+
+
+  <h1 class= "welcome">Welcome to My First Website</h1>
+   <p class="lead">Exploring the world of web design and user experience.</p>
+
+  <div class="intro mb-4">
+    <div class="row align-items-center justify-content-center text-center text-md-start">
+      <div class="col-12 col-md-4 d-flex justify-content-center mb-3 mb-md-0">
+        <img src="mi foto.jpg" alt="Claudia Rivera Guevara" class="img-fluid rounded" style="max-width:220px;" />
+      </div>
+      <div class="col-12 col-md-8 d-flex align-items-center justify-content-center">
+        <p class="texto m-0 text-center text-md-start" style="max-width:600px; margin-left:0;">
+         I’m Claudia Rivera a digital transformation professional with a solid background in business administration, Digital Transformation and a growing passion for technology. I’m currently pursuing the Official Master’s in Interface Programming (Hybrid Profile) at TECH Technological University, where I’m developing practical skills in ReactJS, UX/UI design, and front-end and back-end development. I focus on building functional, accessible, and user-centered digital solutions. I strongly believe in continuous learning, agile collaboration, and the power of technology to enhance experiences and drive innovation. and this is my very first site as I begin my journey into full-stack development.
+        </p>
+      </div>
+    </div>
+  </div>
+
+    <div class="galeria galeria d-flex flex-wrap justify-content-center mb-4">
+  <img src="GB.png" alt="Green Belt" class="img-fluid"  />
+  <img src="SCRUM.png" alt="SCRUM" class="img-fluid" />
+  <img src="COMPTYA+.png" alt="COMPTIA+" class="img-fluid" />
+  <img src="ITIL4 FOUNDATION.png" alt="ITIL4 FOUNDATION" class="img-fluid" />
+</div>
+
+   <nav class="main-nav">
+    <a href="#importance">Importance of Design</a>
+    <a href="#elements">Key Design Elements</a>
+    <a href="#impact">User Experience Impact</a>
+    <a href="#contact">Contact Me</a>
+  </nav>
+
+   <section id="importance">
+    <h2>The Importance of Proper Website Design</h2>
+    <article>
+      <p class="intro">A well-designed website not only attracts users but keeps them engaged. It builds trust and communicates value clearly, making navigation intuitive and enjoyable.</p>
+    </article>
+    <aside>
+      Did you know? Users form an opinion about a website in under 1 second.
+    </aside>
+    <h4>First Impressions Matter: Example of a Clean Layout</h4>
+
+    <img src="LAYOUT.png" alt="Example of clean website layout" class="img-fluid" />
+  <form>
+      <label for="email">Subscribe to our newsletter:</label>
+      <input type="email" id="email" name="email" required />
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+<section id="elements">
+    <h2>Key Design Elements</h2>
+    <article>
+      <p>Effective use of layout, color, typography, and spacing can turn an ordinary site into an exceptional experience. Accessibility and responsiveness are no longer optional—they’re essential.</p>
+    </article>
+    <aside>
+      Tip: Always test your site on different devices and screen sizes.
+    </aside>
+    <iframe  src="https://www.youtube.com/embed/ShSNbXkxQS8" title="30 Web Design Tips in 11 Minutes" allowfullscreen></iframe>
+  </section>
+
+ <section id="impact">
+    <h2>Impact on User Experience</h2>
+    <article>
+      <p>Users are more likely to stay, interact, and convert on sites that feel smooth and purposeful. Every design decision—from buttons to loading time—affects how the user feels.</p>
+    </article>
+    <aside>
+      Imagine a user-friendly site as your best salesperson—available 24/7.
+    </aside>
+    <iframe src="https://www.youtube.com/embed/fYs2Mdyasuc?si=xXoMMdIEP8bv09AS" title="User Experience Fundamentals" allowfullscreen></iframe>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p class="footer">
+      Site built by Claudia Rivera Guevara | © 2025 | First Steps into Full-Stack 🌐<br>
+      <a href="https://www.linkedin.com/in/claudia-rivera-guevara-4315b618b" target="_blank">Connect with me on LinkedIn</a>
+    </p>
+  </section>
+
+  <script src="main.js"></script>
+</body>
+</html>

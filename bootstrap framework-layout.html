@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Framework Layout (Bootstrap Example)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <style>
+    body { background: #f8f9fa; color: #222; font-family: 'Segoe UI', Arial, sans-serif; }
+    .container { max-width: 950px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 32px; }
+    h1, h2 { color: #3b3b6d; }
+    /* Bootstrap Layout Demo */
+    .framework-layout-demo {
+      border: 2px solid #3b3b6d;
+      border-radius: 8px;
+      margin: 32px 0 24px 0;
+      background: #f1f1fa;
+      overflow: hidden;
+      padding: 0;
+    }
+    .framework-header, .framework-footer {
+      background: #3b3b6d;
+      color: #fff;
+      padding: 18px;
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .framework-nav, .framework-sidebar {
+      background: #e9ecef;
+      padding: 18px;
+      font-weight: 500;
+      min-height: 180px;
+      transition: background 0.2s;
+      border-radius: 0;
+    }
+    .framework-main {
+      background: #fff;
+      padding: 18px;
+      font-weight: 500;
+      min-height: 180px;
+      transition: background 0.2s;
+      border-radius: 0;
+    }
+    .framework-nav:hover, .framework-sidebar:hover, .framework-main:hover {
+      background: #d1e7fd;
+    }
+    @media (max-width: 700px) {
+      .framework-nav, .framework-sidebar, .framework-main {
+        min-height: unset;
+        padding: 12px;
+      }
+    }
+    .example-code {
+      background: #222;
+      color: #fff;
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 0.97em;
+      margin: 16px 0;
+      overflow-x: auto;
+    }
+    .pros-cons ul { margin-left: 1.2em; }
+    .pros-cons li { margin-bottom: 6px; }
+    .nav-links a {
+      margin-right: 12px;
+      text-decoration: none;
+      color: #0d6efd;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #3b3b6d; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="container">
+      <!-- Page Header -->
+      <header class="mb-4 text-center">
+        <h1 class="mb-2"><i class="fab fa-bootstrap"></i> CSS Framework Layout</h1>
+        <p class="lead">Building layouts quickly with Bootstrap’s grid system</p>
+      </header>
+      <!-- Framework Layout Demo -->
+      <section>
+        <h2 class="h4 mb-3">Bootstrap Layout Demo</h2>
+        <div class="framework-layout-demo mb-3">
+          <div class="framework-header">Header (full-width)</div>
+          <div class="row g-0">
+            <nav class="col-12 col-md-3 framework-nav" aria-label="Main navigation">
+              Navigation<br>
+              <ul class="list-unstyled mt-2">
+                <li><a href="#" tabindex="0">Home</a></li>
+                <li><a href="#" tabindex="0">About</a></li>
+                <li><a href="#" tabindex="0">Contact</a></li>
+              </ul>
+            </nav>
+            <section class="col-12 col-md-6 framework-main">
+              Main Content<br>
+              <p>This area expands between navigation and sidebar. Bootstrap’s grid makes responsive layouts easy with minimal custom CSS.</p>
+            </section>
+            <aside class="col-12 col-md-3 framework-sidebar">
+              Sidebar<br>
+              <ul class="list-unstyled mt-2">
+                <li><a href="#" tabindex="0">Links</a></li>
+                <li><a href="#" tabindex="0">Resources</a></li>
+              </ul>
+            </aside>
+          </div>
+          <footer class="framework-footer">Footer (full-width)</footer>
+        </div>
+      </section>
+      <!-- Explanation Section -->
+      <section class="mb-4">
+        <h2 class="h4">How CSS Framework Layouts Work</h2>
+        <p>
+          CSS frameworks like <strong>Bootstrap</strong> provide a responsive grid system and prebuilt components. The grid uses rows and columns to align content, adapting to different screen sizes automatically.
+        </p>
+        <div class="example-code">
+<pre><code>&lt;div class="row"&gt;
+  &lt;nav class="col-3"&gt;Navigation&lt;/nav&gt;
+  &lt;main class="col-6"&gt;Main Content&lt;/main&gt;
+  &lt;aside class="col-3"&gt;Sidebar&lt;/aside&gt;
+&lt;/div&gt;
+</code></pre>
+        </div>
+        <p>
+          <strong>Bootstrap Grid Example CSS:</strong>
+        </p>
+        <div class="example-code">
+<pre><code>.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.col-3 { flex: 0 0 25%; }
+.col-6 { flex: 0 0 50%; }
+@media (max-width: 700px) {
+  .col-3, .col-6 { flex: 0 0 100%; }
+}
+</code></pre>
+        </div>
+      </section>
+      <!-- Pros and Cons -->
+      <section class="pros-cons row mb-4">
+        <div class="col-md-6">
+          <h2 class="h5">✅ Pros</h2>
+          <ul>
+            <li>Fast to build responsive layouts</li>
+            <li>Prebuilt components and utilities</li>
+            <li>Consistent cross-browser support</li>
+            <li>Great documentation and community</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <h2 class="h5">❌ Cons</h2>
+          <ul>
+            <li>Extra CSS/JS files increase page size</li>
+            <li>Sites can look similar if not customized</li>
+            <li>Learning curve for framework classes</li>
+          </ul>
+        </div>
+      </section>
+      <!-- Recommended Use Cases -->
+      <section class="mb-4">
+        <h2 class="h5">📌 Recommended Use Cases</h2>
+        <ul>
+          <li>
+            <strong>Admin Dashboards:</strong> Consistent, responsive back-office interfaces
+            <a href="#" class="ms-2 text-primary" onclick="showModal('dashboardModal');return false;">Click here</a>
+          </li>
+          <li>
+            <strong>Landing Pages:</strong> Fast, mobile-friendly marketing sites
+            <a href="#" class="ms-2 text-primary" onclick="showModal('landingModal');return false;">Click here</a>
+          </li>
+          <li>
+            <strong>Web Apps:</strong> Build scalable, maintainable interfaces
+            <a href="#" class="ms-2 text-primary" onclick="showModal('webappModal');return false;">Click here</a>
+          </li>
+        </ul>
+        <!-- Modals for Use Case Examples -->
+        <!-- Admin Dashboard Modal -->
+        <div class="modal fade" id="dashboardModal" tabindex="-1" aria-labelledby="dashboardModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="dashboardModalLabel">Admin Dashboard Example</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="row g-2">
+                  <aside class="col-12 col-md-3">
+                    <div class="card h-100">
+                      <img src="https://via.placeholder.com/120x80?text=Sidebar" class="card-img-top" alt="Sidebar">
+                      <div class="card-body p-2">
+                        <h6 class="card-title mb-1">Sidebar</h6>
+                        <p class="card-text small">Navigation links and user info.</p>
+                      </div>
+                    </div>
+                  </aside>
+                  <main class="col-12 col-md-9">
+                    <div class="card h-100">
+                      <img src="https://via.placeholder.com/320x80?text=Dashboard" class="card-img-top" alt="Dashboard">
+                      <div class="card-body p-2">
+                        <h6 class="card-title mb-1">Main Dashboard</h6>
+                        <p class="card-text small">Charts, tables, and quick stats.</p>
+                      </div>
+                    </div>
+                  </main>
+                </div>
+                <small class="text-muted d-block mt-2">A typical admin dashboard layout using Bootstrap grid and cards.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Landing Page Modal -->
+        <div class="modal fade" id="landingModal" tabindex="-1" aria-labelledby="landingModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="landingModalLabel">Landing Page Example</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="row g-2 align-items-center">
+                  <div class="col-12 col-md-6">
+                    <img src="https://via.placeholder.com/320x120?text=Hero+Image" class="img-fluid rounded mb-2" alt="Hero">
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <h5>Welcome to Our Product</h5>
+                    <p class="small">Bootstrap makes it easy to create mobile-friendly landing pages with hero images, call-to-action buttons, and feature highlights.</p>
+                    <button class="btn btn-primary btn-sm">Get Started</button>
+                  </div>
+                </div>
+                <small class="text-muted d-block mt-2">A simple landing page layout using Bootstrap grid and responsive images.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Web App Modal -->
+        <div class="modal fade" id="webappModal" tabindex="-1" aria-labelledby="webappModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="webappModalLabel">Web App Example</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="row g-2">
+                  <header class="col-12">
+                    <img src="https://via.placeholder.com/600x80?text=App+Header" class="img-fluid rounded mb-2" alt="App Header">
+                  </header>
+                  <div class="col-12 col-md-3">
+                    <div class="card h-100">
+                      <img src="https://via.placeholder.com/120x80?text=Menu" class="card-img-top" alt="Menu">
+                      <div class="card-body p-2">
+                        <h6 class="card-title mb-1">Menu</h6>
+                        <p class="card-text small">App navigation.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <main class="col-12 col-md-9">
+                    <div class="card h-100">
+                      <img src="https://via.placeholder.com/320x80?text=Content" class="card-img-top" alt="Content">
+                      <div class="card-body p-2">
+                        <h6 class="card-title mb-1">Main Content</h6>
+                        <p class="card-text small">App workspace and features.</p>
+                      </div>
+                    </div>
+                  </main>
+                  <footer class="col-12">
+                    <img src="https://via.placeholder.com/600x40?text=App+Footer" class="img-fluid rounded mt-2" alt="App Footer">
+                  </footer>
+                </div>
+                <small class="text-muted d-block mt-2">A scalable web app layout using Bootstrap grid and cards.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Navigation -->
+      <nav class="nav-links text-center mb-2">
+        <a href="grid-layout.html"><i class="fas fa-arrow-left"></i> Back to Layout Showcase</a>
+        <a href="css-float-layout.html">Float Demo</a>
+        <a href="css-flexbox-layout.html">Flexbox Demo</a>
+        <a href="css-grid-layout.html">Grid Demo</a>
+        <a href="table-layout.html">Table Demo</a>
+      </nav>
+      <!-- Footer -->
+      <footer class="text-center text-muted py-4">
+        &copy; 2023 Your Name. All rights reserved.
+      </footer>
+    </div>
+  </main>
+  <!-- Make sure Bootstrap JS is loaded for accordion functionality -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function showModal(id) {
+      var modal = new bootstrap.Modal(document.getElementById(id));
+      modal.show();
+    }
+  </script>
+</body>
+</html>

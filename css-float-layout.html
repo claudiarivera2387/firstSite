@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Float Layout</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <style>
+    body { background: #f8f9fa; color: #222; font-family: 'Segoe UI', Arial, sans-serif; }
+    .container { max-width: 950px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 32px; }
+    h1, h2 { color: #3b3b6d; }
+    /* Float Layout Demo */
+    .float-layout-demo { border: 2px solid #3b3b6d; border-radius: 8px; margin: 32px 0 24px 0; background: #f1f1fa; overflow: hidden; }
+    .float-header, .float-footer {
+      background: #3b3b6d;
+      color: #fff;
+      padding: 18px;
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .float-nav {
+      float: left;
+      width: 22%;
+      background: #e9ecef;
+      padding: 18px;
+      min-height: 180px;
+      font-weight: 500;
+      border-right: 2px solid #d1d1e0;
+      transition: background 0.2s;
+    }
+    .float-sidebar {
+      float: right;
+      width: 22%;
+      background: #e9ecef;
+      padding: 18px;
+      min-height: 180px;
+      font-weight: 500;
+      border-left: 2px solid #d1d1e0;
+      transition: background 0.2s;
+    }
+    .float-main {
+      margin-left: 24%;
+      margin-right: 24%;
+      background: #fff;
+      padding: 18px;
+      min-height: 180px;
+      font-weight: 500;
+      border-radius: 0 0 8px 8px;
+      transition: background 0.2s;
+    }
+    .float-layout-demo:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    .float-nav:hover, .float-sidebar:hover, .float-main:hover {
+      background: #d1e7fd;
+    }
+    @media (max-width: 900px) {
+      .float-nav, .float-sidebar { width: 28%; }
+      .float-main { margin-left: 30%; margin-right: 30%; }
+    }
+    @media (max-width: 700px) {
+      .float-nav, .float-sidebar, .float-main {
+        float: none !important;
+        width: 100% !important;
+        margin: 0 !important;
+        min-height: unset;
+      }
+      .float-layout-demo { padding-bottom: 0; }
+    }
+    .example-code {
+      background: #222;
+      color: #fff;
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 0.97em;
+      margin: 16px 0;
+      overflow-x: auto;
+    }
+    .pros-cons ul { margin-left: 1.2em; }
+    .pros-cons li { margin-bottom: 6px; }
+    .nav-links a {
+      margin-right: 12px;
+      text-decoration: none;
+      color: #0d6efd;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #3b3b6d; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="container">
+      <!-- Page Header -->
+      <header class="mb-4 text-center">
+        <h1 class="mb-2"><i class="fas fa-arrows-alt-h"></i> CSS Float Layout</h1>
+        <p class="lead">Understanding one of the earliest CSS-based layout methods</p>
+      </header>
+      <!-- Float Layout Demo -->
+      <section>
+        <h2 class="h4 mb-3">Float Layout Demo</h2>
+        <div class="float-layout-demo mb-3">
+          <div class="float-header">Header (full-width)</div>
+          <nav class="float-nav" aria-label="Main navigation">
+            Navigation<br>
+            <ul class="list-unstyled mt-2">
+              <li><a href="#" tabindex="0">Home</a></li>
+              <li><a href="#" tabindex="0">About</a></li>
+              <li><a href="#" tabindex="0">Contact</a></li>
+            </ul>
+          </nav>
+          <aside class="float-sidebar">
+            Sidebar<br>
+            <ul class="list-unstyled mt-2">
+              <li><a href="#" tabindex="0">Links</a></li>
+              <li><a href="#" tabindex="0">Resources</a></li>
+            </ul>
+          </aside>
+          <section class="float-main">
+            Main Content<br>
+            <p>This area expands between the navigation and sidebar. Resize your browser to see how floats behave responsively.</p>
+          </section>
+          <footer class="float-footer">Footer (cleared, full-width)</footer>
+        </div>
+      </section>
+      <!-- Explanation Section -->
+      <section class="mb-4">
+        <h2 class="h4">How CSS Float Layouts Work</h2>
+        <p>
+          The <code>float</code> property was originally designed to wrap text around images. Early web developers repurposed it to create multi-column layouts by floating <code>&lt;div&gt;</code> elements left or right. To prevent parent containers from collapsing, a <strong>clearfix</strong> technique is used.
+        </p>
+        <div class="example-code">
+<pre><code>&lt;div class="container"&gt;
+  &lt;div class="nav" style="float:left; width:25%;"&gt;Navigation&lt;/div&gt;
+  &lt;div class="main" style="float:right; width:50%;"&gt;Main Content&lt;/div&gt;
+  &lt;div class="footer" style="clear:both;"&gt;Footer&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+        </div>
+        <p>
+          <strong>Clearfix Example:</strong>
+        </p>
+        <div class="example-code">
+<pre><code>.container::after {
+  content: "";
+  display: table;
+  clear: both;
+}</code></pre>
+        </div>
+      </section>
+      <!-- Pros and Cons -->
+      <section class="pros-cons row mb-4">
+        <div class="col-md-6">
+          <h2 class="h5">✅ Pros</h2>
+          <ul>
+            <li>Simple and widely supported</li>
+            <li>Useful for wrapping text around images</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <h2 class="h5">❌ Cons</h2>
+          <ul>
+            <li>Not designed for layout</li>
+            <li>Requires clearfix hacks</li>
+            <li>Fragile and hard to maintain</li>
+          </ul>
+        </div>
+      </section>
+      <!-- Recommended Use Cases -->
+      <section class="mb-4">
+        <h2 class="h5">📌 Recommended Use Cases</h2>
+        <ul>
+          <li><strong>Legacy Projects:</strong> Maintaining or updating older websites that were built with float-based layouts</li>
+          <li><strong>Email Templates:</strong> Some email clients still rely on float-based layout techniques for compatibility</li>
+          <li><strong>Image Galleries:</strong> Wrapping thumbnails or inline images with text using <code>float: left</code></li>
+          <li><strong>Quick Prototypes:</strong> Fast layout mockups without needing Flexbox or Grid</li>
+          <li><strong>Educational Demos:</strong> Teaching foundational CSS concepts and layout evolution</li>
+        </ul>
+        <!-- Accordion Examples -->
+        <div class="accordion my-4" id="floatExamplesAccordion">
+          <!-- Email Template Example -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingEmail">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEmail" aria-expanded="false" aria-controls="collapseEmail">
+                Example: Email Template Layout with Floats
+              </button>
+            </h2>
+            <div id="collapseEmail" class="accordion-collapse collapse" aria-labelledby="headingEmail" data-bs-parent="#floatExamplesAccordion">
+              <div class="accordion-body">
+                <div style="border:1px solid #d1d1e0; border-radius:6px; padding:12px; background:#f8f9fa;">
+                  <div style="float:left; width:40%; background:#e9ecef; padding:8px; border-radius:6px;">
+                    <strong>Sidebar</strong><br>
+                    Links, logo, or contact info
+                  </div>
+                  <div style="float:right; width:58%; background:#fff; padding:8px; border-radius:6px;">
+                    <strong>Main Message</strong><br>
+                    Welcome to our newsletter! This area contains the main email content.
+                  </div>
+                  <div style="clear:both;"></div>
+                </div>
+                <small class="text-muted d-block mt-2">Many email templates use floats for layout compatibility across email clients.</small>
+              </div>
+            </div>
+          </div>
+          <!-- Image Gallery Example -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingGallery">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGallery" aria-expanded="false" aria-controls="collapseGallery">
+                Example: Image Gallery with Float
+              </button>
+            </h2>
+            <div id="collapseGallery" class="accordion-collapse collapse" aria-labelledby="headingGallery" data-bs-parent="#floatExamplesAccordion">
+              <div class="accordion-body">
+                <div style="background:#e9ecef; padding:12px; border-radius:6px; overflow:auto;">
+                  <img src="https://via.placeholder.com/100x80" alt="Gallery 1" style="float:left; margin-right:12px; border-radius:4px;">
+                  <img src="https://via.placeholder.com/100x80" alt="Gallery 2" style="float:left; margin-right:12px; border-radius:4px;">
+                  <img src="https://via.placeholder.com/100x80" alt="Gallery 3" style="float:left; margin-right:12px; border-radius:4px;">
+                  <div style="clear:both;"></div>
+                  <p class="small mt-2">Thumbnails are floated left to create a simple gallery layout.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Quick Prototype Example -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingPrototype">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrototype" aria-expanded="false" aria-controls="collapsePrototype">
+                Example: Quick Prototype Layout
+              </button>
+            </h2>
+            <div id="collapsePrototype" class="accordion-collapse collapse" aria-labelledby="headingPrototype" data-bs-parent="#floatExamplesAccordion">
+              <div class="accordion-body">
+                <div style="border:1px solid #d1d1e0; border-radius:6px; padding:12px; background:#f8f9fa;">
+                  <div style="float:left; width:30%; background:#e9ecef; padding:8px; border-radius:6px;">
+                    <strong>Menu</strong>
+                  </div>
+                  <div style="float:right; width:68%; background:#fff; padding:8px; border-radius:6px;">
+                    <strong>Content Area</strong>
+                  </div>
+                  <div style="clear:both;"></div>
+                </div>
+                <small class="text-muted d-block mt-2">Floats allow for fast mockups of multi-column layouts without Flexbox or Grid.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Navigation -->
+      <nav class="nav-links text-center mb-2">
+        <a href="grid-layout.html"><i class="fas fa-arrow-left"></i> Back to Layout Showcase</a>
+        <a href="css-flexbox-layout.html">Flexbox Demo</a>
+        <a href="table-layout.html">Table Demo</a>
+        <a href="css-float-layout.html">Float Demo</a>
+        <a href="bootstrap framework-layout.html">Bootstrap Demo</a>
+      </nav>
+    </div>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+  <!-- Make sure Bootstrap JS is loaded for accordion functionality -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
